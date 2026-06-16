@@ -1,8 +1,8 @@
 /*
-    --purple : #BB9AF7
-    --bg : #1C181B 
-    --green : #9ECE6A
-    --blue : #7DCFFF
+     --purple : #BB9AF7   (acento principal)
+     --bg     : #1C181B   (fondo)
+     --green  : #9ECE6A   (acento)
+     --blue   : #7DCFFF   (acento)
 */
 
 :root {
@@ -57,6 +57,7 @@ strong { color: var(--text); font-weight: 600; }
     margin-bottom: 12px;
 }
 
+/* Header / Nav */
 header {
     position: sticky;
     top: 0;
@@ -132,6 +133,7 @@ nav {
     transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
+/* Sections */
 section { padding: 96px 0; }
 #hero { padding: 0; }
 
@@ -155,6 +157,7 @@ h2 {
 #about p { color: var(--muted); max-width: 64ch; margin-bottom: 16px; }
 #about p strong { color: var(--text); }
 
+/* Hero */
 #hero {
     position: relative;
     min-height: 88vh;
@@ -163,6 +166,7 @@ h2 {
     overflow: hidden;
 }
 
+/* fondo de toda la web, fijo y por detrás de todo */
 #code-canvas {
     position: fixed;
     inset: 0;
@@ -243,6 +247,7 @@ h2 {
     border: 1.5px dashed var(--border);
 }
 
+/* Projects */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -291,6 +296,7 @@ h2 {
 .project-links { display: flex; gap: 16px; margin-top: 4px; }
 .project-links a { font-size: 0.85rem; font-weight: 500; }
 
+/* Skills */
 .skills-grid { display: flex; flex-wrap: wrap; gap: 12px; }
 .skill-chip {
     font-family: var(--font-mono);
@@ -304,6 +310,7 @@ h2 {
 }
 .skill-chip:hover { border-color: var(--blue); color: var(--blue); }
 
+/* Contact */
 .social-links { display: flex; flex-wrap: wrap; gap: 16px; }
 .social-card {
     display: flex;
@@ -325,6 +332,7 @@ h2 {
 .social-card .social-name { font-family: var(--font-display); font-weight: 500; color: var(--text); }
 .social-card .social-handle { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
 
+/* Footer */
 footer {
     border-top: 1px solid var(--border);
     padding: 32px 24px;
@@ -332,12 +340,29 @@ footer {
 }
 footer p { color: var(--muted); font-size: 0.85rem; }
 
+.footer-source { margin-top: 8px; }
+.footer-source a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    transition: color 0.18s ease;
+}
+.footer-source a:hover { color: var(--purple); }
+.footer-source svg { width: 15px; height: 15px; }
+
+/* Accesibilidad */
 :focus-visible {
     outline: 2px solid var(--purple);
     outline-offset: 3px;
     border-radius: 4px;
 }
 
+/* Animaciones */
+
+/* caret del typewriter */
 .lead.typing::after {
     content: "▌";
     color: var(--green);
@@ -346,6 +371,7 @@ footer p { color: var(--muted); font-size: 0.85rem; }
 }
 @keyframes blink { 50% { opacity: 0; } }
 
+/* reveal de las cards al hacer scroll */
 .project-card.reveal {
     opacity: 0;
     transform: translateY(28px);
@@ -356,6 +382,7 @@ footer p { color: var(--muted); font-size: 0.85rem; }
     transform: none;
 }
 
+/* brillo que sigue al cursor */
 .project-card::after {
     content: "";
     position: absolute;
@@ -368,6 +395,7 @@ footer p { color: var(--muted); font-size: 0.85rem; }
 }
 .project-card:hover::after { opacity: 1; }
 
+/* skill chips escalonadas */
 @keyframes chip-pop {
     from { opacity: 0; transform: translateY(14px) scale(0.96); }
     to   { opacity: 1; transform: none; }
@@ -380,6 +408,7 @@ footer p { color: var(--muted); font-size: 0.85rem; }
     }
 }
 
+/* Responsive */
 @media (max-width: 760px) {
     .mobile-menu-toggle { display: flex; }
     .nav-actions { margin-left: auto; }
@@ -412,10 +441,10 @@ footer p { color: var(--muted); font-size: 0.85rem; }
     section { padding: 64px 0; }
 }
 
+/* sin animaciones si el sistema lo pide */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { transition: none !important; animation: none !important; }
-
     .project-card.reveal { opacity: 1 !important; transform: none !important; }
     .skill-chip { opacity: 1 !important; transform: none !important; }
 }

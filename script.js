@@ -46,6 +46,8 @@ const CONTACTS = [
     }
 ];
 
+/* Render */
+
 document.getElementById("year").textContent = new Date().getFullYear();
 
 const projectsGrid = document.querySelector(".projects-grid");
@@ -109,6 +111,8 @@ if (contactLinks) {
     });
 }
 
+/* Menu */
+
 const toggle = document.querySelector(".mobile-menu-toggle");
 const navLinks = document.getElementById("nav-links");
 
@@ -125,6 +129,8 @@ navLinks.querySelectorAll("a").forEach(link => {
         toggle.setAttribute("aria-expanded", "false");
     });
 });
+
+/* Background (tokens de código flotando) */
 
 const canvas = document.getElementById("code-canvas");
 const ctx = canvas.getContext("2d");
@@ -195,8 +201,11 @@ if (reduceMotion) {
     requestAnimationFrame(tick);
 }
 
+/* Animaciones */
+
 const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
+/* hero: el nombre se "descifra" al cargar */
 function decode(el) {
     const final = el.textContent;
     const glyphs = "ABCDEF0123456789{}[]<>/=+*&%$#";
@@ -214,6 +223,7 @@ function decode(el) {
     }, 45);
 }
 
+/* hero: el lead se escribe solo */
 function typewriter(el, delay = 0) {
     const final = el.textContent;
     el.textContent = "";
@@ -234,6 +244,8 @@ if (heroName && heroLead && !reduceMotion) {
     typewriter(heroLead, 900);
 }
 
+/* cards: aparecen al entrar en pantalla (el estado oculto solo se pone por JS,
+   así sin JS o con reduced-motion se ven igual) */
 if (!reduceMotion) {
     const cards = document.querySelectorAll(".project-card");
     cards.forEach(c => c.classList.add("reveal"));
@@ -242,6 +254,7 @@ if (!reduceMotion) {
             if (entry.isIntersecting) {
                 const card = entry.target;
                 card.classList.add("in");
+                // quito las clases al acabar para que el tilt controle el transform
                 card.addEventListener("transitionend", () => {
                     card.classList.remove("reveal", "in");
                 }, { once: true });
@@ -252,6 +265,7 @@ if (!reduceMotion) {
     cards.forEach(c => io.observe(c));
 }
 
+/* tilt 3D en las cards y botones magnéticos (solo con ratón) */
 if (canHover && !reduceMotion) {
     document.querySelectorAll(".project-card").forEach(card => {
         card.addEventListener("pointermove", e => {
