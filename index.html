@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <canvas id="code-canvas" aria-hidden="true"></canvas>
+
     <header>
         <nav>
             <a class="logo" href="#hero">Abstract<span>Raven</span></a>
@@ -42,12 +44,11 @@
 
     <main>
         <section id="hero">
-            <canvas id="code-canvas" aria-hidden="true"></canvas>
             <div class="container hero-grid">
                 <div class="hero-content">
                     <p class="eyebrow">Game developer · Catalonia</p>
-                    <h1>Hi, I'm <span>Abstract Raven</span></h1>
-                    <p class="lead">I build games and tools. C#, C++, Lua · Unity, Unreal and Love2D.</p>
+                    <h1>Hi, I'm <span id="hero-name">Abstract Raven</span></h1>
+                    <p class="lead" id="hero-lead">I build games and tools. C#, C++, Lua · Unity, Unreal and Love2D.</p>
                     <div class="hero-btns">
                         <a href="#projects" class="btn btn-primary">View Projects</a>
                         <a href="#contact" class="btn btn-secondary">Contact</a>

@@ -46,8 +46,6 @@ const CONTACTS = [
     }
 ];
 
-/* Render */
-
 document.getElementById("year").textContent = new Date().getFullYear();
 
 const projectsGrid = document.querySelector(".projects-grid");
@@ -111,8 +109,6 @@ if (contactLinks) {
     });
 }
 
-/* Menu */
-
 const toggle = document.querySelector(".mobile-menu-toggle");
 const navLinks = document.getElementById("nav-links");
 
@@ -130,8 +126,6 @@ navLinks.querySelectorAll("a").forEach(link => {
     });
 });
 
-/* Background */
-
 const canvas = document.getElementById("code-canvas");
 const ctx = canvas.getContext("2d");
 const COLORS = ["#BB9AF7", "#7DCFFF", "#9ECE6A"];
@@ -148,8 +142,8 @@ function makeToken() {
         y: Math.random() * height,
         vy: -(0.12 + Math.random() * 0.22),
         vx: (Math.random() - 0.5) * 0.08,
-        size: 13 + Math.random() * 11,
-        alpha: 0.05 + Math.random() * 0.11,
+        size: 14 + Math.random() * 12,
+        alpha: 0.11 + Math.random() * 0.17,
         text: TOKENS[Math.floor(Math.random() * TOKENS.length)],
         color: COLORS[Math.floor(Math.random() * COLORS.length)]
     };
@@ -164,7 +158,7 @@ function resize() {
     canvas.height = height * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    const count = Math.min(28, Math.max(8, Math.round((width * height) / 46000)));
+    const count = Math.min(46, Math.max(14, Math.round((width * height) / 30000)));
     tokens = Array.from({ length: count }, makeToken);
 }
 
@@ -199,4 +193,86 @@ if (reduceMotion) {
     ctx.globalAlpha = 1;
 } else {
     requestAnimationFrame(tick);
+}
+
+const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+function decode(el) {
+    const final = el.textContent;
+    const glyphs = "ABCDEF0123456789{}[]<>/=+*&%$#";
+    let frame = 0;
+    const total = 30;
+    const id = setInterval(() => {
+        const revealed = Math.floor((frame / total) * final.length);
+        let out = "";
+        for (let i = 0; i < final.length; i++) {
+            if (final[i] === " ") { out += " "; continue; }
+            out += i < revealed ? final[i] : glyphs[Math.floor(Math.random() * glyphs.length)];
+        }
+        el.textContent = out;
+        if (frame++ > total) { clearInterval(id); el.textContent = final; }
+    }, 45);
+}
+
+function typewriter(el, delay = 0) {
+    const final = el.textContent;
+    el.textContent = "";
+    el.classList.add("typing");
+    setTimeout(() => {
+        let i = 0;
+        const id = setInterval(() => {
+            el.textContent = final.slice(0, ++i);
+            if (i >= final.length) { clearInterval(id); el.classList.remove("typing"); }
+        }, 38);
+    }, delay);
+}
+
+const heroName = document.getElementById("hero-name");
+const heroLead = document.getElementById("hero-lead");
+if (heroName && heroLead && !reduceMotion) {
+    decode(heroName);
+    typewriter(heroLead, 900);
+}
+
+if (!reduceMotion) {
+    const cards = document.querySelectorAll(".project-card");
+    cards.forEach(c => c.classList.add("reveal"));
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const card = entry.target;
+                card.classList.add("in");
+                card.addEventListener("transitionend", () => {
+                    card.classList.remove("reveal", "in");
+                }, { once: true });
+                io.unobserve(card);
+            }
+        });
+    }, { threshold: 0.18 });
+    cards.forEach(c => io.observe(c));
+}
+
+if (canHover && !reduceMotion) {
+    document.querySelectorAll(".project-card").forEach(card => {
+        card.addEventListener("pointermove", e => {
+            const r = card.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width;
+            const py = (e.clientY - r.top) / r.height;
+            card.style.transform =
+                `perspective(700px) rotateX(${(0.5 - py) * 10}deg) rotateY(${(px - 0.5) * 10}deg) translateY(-4px)`;
+            card.style.setProperty("--gx", px * 100 + "%");
+            card.style.setProperty("--gy", py * 100 + "%");
+        });
+        card.addEventListener("pointerleave", () => { card.style.transform = ""; });
+    });
+
+    document.querySelectorAll(".hero-btns .btn").forEach(btn => {
+        btn.addEventListener("pointermove", e => {
+            const r = btn.getBoundingClientRect();
+            const x = e.clientX - (r.left + r.width / 2);
+            const y = e.clientY - (r.top + r.height / 2);
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.4}px)`;
+        });
+        btn.addEventListener("pointerleave", () => { btn.style.transform = ""; });
+    });
 }
