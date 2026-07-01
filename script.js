@@ -1,5 +1,15 @@
 const PROJECTS = [
     {
+        title: "Discord Clip Portal",
+        image: "./assets/screenshot_portal.png",
+        desc: "A Discord-native clip pipeline and community portal, live in production for a YouTuber with a ~250K audience. The creator reacts to a fan clip in Discord and it lands on his site instantly, sorted and ready to edit. Subscribers log in with Discord to browse, like and share. Full-stack, real users, source private.",
+        tags: ["Cloudflare", "R2", "Neon", "Discord OAuth", "Node.js", "Resend"],
+        links: [
+            { label: "Case study", url: "https://github.com/absravdev/discord-clip-portal" },
+            { label: "Live", url: "https://jimmycruck.com/clips" }
+        ]
+    },
+    {
         title: "Aeternum",
         image: "./assets/screenshot_aeternum.png",
         desc: "Top-down shooter with 15 levels across 5 planets, 6 enemy types and a tiered upgrade shop. Later extended with a global online leaderboard (Node + Express + PostgreSQL) and 2-player host-authoritative LAN co-op over ENet.",
@@ -29,7 +39,7 @@ const PROJECTS = [
     }
 ];
 
-const SKILLS = ["C#", "C++", "Lua", "Unity", "Unreal", "Love2D", "3ds Max", "Substance", "Git"];
+const SKILLS = ["C#", "C++", "Lua", "JavaScript", "Unity", "Unreal", "Love2D", "Node.js", "Cloudflare", "PostgreSQL", "Discord API", "HTML/CSS", "Git", "3ds Max", "Substance"];
 
 const CONTACTS = [
     {
