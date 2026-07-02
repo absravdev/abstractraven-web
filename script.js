@@ -6,7 +6,7 @@ const PROJECTS = [
         tags: ["Cloudflare", "R2", "Neon", "Discord OAuth", "Node.js", "Resend"],
         links: [
             { label: "Case study", url: "https://github.com/absravdev/discord-clip-portal" },
-            { label: "Live", url: "https://jimmycruck.com/clips" }
+            { label: "Live", url: "https://jimmycruck.com/reel" }
         ]
     },
     {
