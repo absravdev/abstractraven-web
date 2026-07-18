@@ -1,11 +1,11 @@
 const PROJECTS = [
     {
-        title: "Discord Clip Portal",
+        title: "Flockery",
         image: "./assets/screenshot_portal.png",
-        desc: "A Discord-native clip pipeline and community portal, live in production for a YouTuber with a ~250K audience. The creator reacts to a fan clip in Discord and it lands on his site instantly, sorted and ready to edit. Subscribers log in with Discord to browse, like and share. Full-stack, real users, source private.",
-        tags: ["Cloudflare", "R2", "Neon", "Discord OAuth", "Node.js", "Railway", "Resend"],
+        desc: "A managed community platform on top of Discord for content creators: clip portal, contests, bounties, fan profiles and a creator panel, all as configurable modules. One codebase, N deployments — live in production for a YouTuber with a ~250K audience, plus a public demo. Full-stack SaaS, real users, source private.",
+        tags: ["Cloudflare", "R2", "Neon", "React", "Discord OAuth", "Node.js", "Railway", "Resend"],
         links: [
-            { label: "Case study", url: "https://github.com/absravdev/discord-clip-portal" },
+            { label: "Website", url: "https://flockery.app" },
             { label: "Live", url: "https://jimmycruck.com/reel" }
         ]
     },
