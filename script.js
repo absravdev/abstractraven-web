@@ -44,8 +44,8 @@ const SKILLS = ["C#", "C++", "Lua", "JavaScript", "Unity", "Unreal", "Love2D", "
 const CONTACTS = [
     {
         name: "Email",
-        handle: "absravdev@gmail.com",
-        copy: "absravdev@gmail.com",
+        handle: "absrav@flockery.app",
+        copy: "absrav@flockery.app",
         icon: '<svg viewBox="0 0 24 24" fill="#BB9AF7"><path d="M3 4h18a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm9 7.7L4.6 6H3v.5l9 6.9 9-6.9V6h-1.6L12 11.7zM21 8.3l-9 6.9-9-6.9V18h18V8.3z"/></svg>'
     },
     {
